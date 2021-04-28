@@ -14,11 +14,11 @@ class FileController extends Controller
 
     public function store(Request $request){
         // dd($request->file('img'));
-        
+
         //Storage
         Storage::put('public/img/', $request->file('img'));
 
-        //stockage
+        //db
         $file = new File();
         $file->img = $request->file('img')->hashName();
         $file->save();
