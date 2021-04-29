@@ -25,3 +25,8 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/admin/file/create', [FileController::class, 'create'])->name('file.create');
 Route::post('/admin/file/store', [FileController::class, 'store'])->name('file.store');
+Route::delete('/admin/file/{id}/destroy', [FileController::class, 'destroy'])->name('file.destroy');
+
+
+Route::get('/admin/file/{id}/edit', [FileController::class, 'edit'])->name('file.edit');
+Route::put('/admin/file/{id}', [FileController::class, 'update'])->name('file.update');

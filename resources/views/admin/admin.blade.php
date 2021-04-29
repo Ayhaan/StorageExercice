@@ -13,6 +13,12 @@
                 @if (Str::after($file->img, '.') == 'jpg' || Str::after($file->img, '.') == 'png')
                     <p>image</p>
                     <img width="50%" src="{{ asset('storage/img/' . $file->img) }}" alt="">
+                    <form action="{{ route('file.destroy', $file->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                    <a href="{{ route('file.edit', $file->id) }}" class="btn btn-primary">edit</a>
                 @else
                     <p>non image</p>
                     <p class="text-danger">{{$file->img}}</p>
