@@ -23,10 +23,13 @@ Route::get('/', function () {
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
+//create
 Route::get('/admin/file/create', [FileController::class, 'create'])->name('file.create');
 Route::post('/admin/file/store', [FileController::class, 'store'])->name('file.store');
+//delete
 Route::delete('/admin/file/{id}/destroy', [FileController::class, 'destroy'])->name('file.destroy');
-
-
+//Edit
 Route::get('/admin/file/{id}/edit', [FileController::class, 'edit'])->name('file.edit');
 Route::put('/admin/file/{id}', [FileController::class, 'update'])->name('file.update');
+//Download
+Route::get('/download/{id}/files', [FileController::class, 'download'])->name('file.download');

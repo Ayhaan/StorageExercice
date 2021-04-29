@@ -4,15 +4,15 @@
     <form  action="{{ route('file.store') }}" method="post" enctype="multipart/form-data" class="d-flex flex-column align-items-center my-5">
         @csrf
         <h1>Ajout d'un nouveau fichier</h1>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="img2">Votre fichier pris sur intert :</label>
             <input type="text" class="form-control-file" id="img2" name="img2">
-        </div>
+        </div> --}}
         <hr>
-        {{-- <div class="form-group">
+        <div class="form-group">
             <label for="img">Votre fichier depuis votre pc :</label>
             <input type="file" class="form-control-file" id="img" name="img">
-        </div> --}}
+        </div>
         <button type="submit" class="btn btn-success text-left">Envoyer</button>
     </form>
 @endsection

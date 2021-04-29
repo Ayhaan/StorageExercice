@@ -16,33 +16,33 @@ class FileController extends Controller
 
         //STORAGE classique via input FILE
             // if ($request->file('img') != null) {
-            //     Storage::put('public/img/', $request->file('img'));
+                Storage::put('public/img/', $request->file('img'));
         
-            //     //db
-            //     $file = new File();
-            //     $file->img = $request->file('img')->hashName();
-            //     $file->save();
+                //db
+                $file = new File();
+                $file->img = $request->file('img')->hashName();
+                $file->save();
             // } 
             
-            // return redirect()->route('admin');
+            return redirect()->route('admin');
 
         //STORAGE en LIGNE URL
         // récupération du fichier
-        $content = file_get_contents($request->img2);
+        // $content = file_get_contents($request->img2);
 
-        //rename le fichier, on coupe et recupere ce qu'il y a après le '/'
-        $name = substr($request->img2, strrpos($request->img2, '/') +1);
+        // //rename le fichier, on coupe et recupere ce qu'il y a après le '/'
+        // $name = substr($request->img2, strrpos($request->img2, '/') +1);
 
-        //DD qui montre chaque étape pour bien comprendre
-        // dd($request->img2, $content, substr($request->img2, strrpos($request->img2, '/') +1), substr($request->img2, strrpos($request->img2, '/')), strrpos($request->img2, '/'));
+        // //DD qui montre chaque étape pour bien comprendre
+        // // dd($request->img2, $content, substr($request->img2, strrpos($request->img2, '/') +1), substr($request->img2, strrpos($request->img2, '/')), strrpos($request->img2, '/'));
 
-        //Partie STORAGE (1er parametre, on donne le chemin + on donne le nom du fichier. 2eme par c'est le CONTENU du fichier)
-        Storage::put('public/img/'.$name , $content);
-        //Partie DB
-        $file = new File();
-        $file->img = $name;
-        $file->save();
-        return redirect()->route('admin');
+        // //Partie STORAGE (1er parametre, on donne le chemin + on donne le nom du fichier. 2eme par c'est le CONTENU du fichier)
+        // Storage::put('public/img/'.$name , $content);
+        // //Partie DB
+        // $file = new File();
+        // $file->img = $name;
+        // $file->save();
+        // return redirect()->route('admin');
     }
 
     public function destroy(File $id)
@@ -69,10 +69,13 @@ class FileController extends Controller
             $file->img = $request->file('img')->hashName();
             $file->save();
         }
-        dd($request->file('img'), $request->titre);
         return redirect()->route('admin');
     }
 
+
+    public function download(File $id){
+        return Storage::download('public/img/' . $id->img);
+    }
 
 
 }

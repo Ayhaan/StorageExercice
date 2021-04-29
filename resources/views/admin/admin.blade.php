@@ -19,6 +19,7 @@
                         <button class="btn btn-danger">Delete</button>
                     </form>
                     <a href="{{ route('file.edit', $file->id) }}" class="btn btn-primary">edit</a>
+                    <a href="{{ route('file.download', $file->id) }}" class="btn btn-success">Télécharger</a>
                 @else
                     <p>non image</p>
                     <p class="text-danger">{{$file->img}}</p>
